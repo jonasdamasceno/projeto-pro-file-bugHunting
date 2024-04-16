@@ -18,11 +18,14 @@ def find_file_by_name(context, search_term, case_sensitive=True):
     for path in context["all_files"]:
         file_name = path.split("/")[-1]
 
-        if not case_sensitive:
-            file_name.lower()
-            search_term.lower()
+        rename_file = file_name
+        new_search_term = search_term
 
-        if search_term in file_name:
+        if not case_sensitive:
+            rename_file = file_name.lower()
+            new_search_term = search_term.lower()
+
+        if new_search_term in rename_file:
             found_files.append(path)
 
     return found_files
